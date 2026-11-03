@@ -150,9 +150,20 @@ enum UserScripts {
     /* PLACEHOLDER: paste core-js bundle or other polyfills here */
     """#
 
+    // 4) ADDED: asset probe, top frame only, wrapped in try/catch.
+    static let assetProbe = #"""
+    if (window.top === window) {
+      try {
+        fetch("https://assets-proxy.anthropic.com/claude-ai/v2/assets/v1/index-D42uJ0hw.js")
+          .then(r => console.log("ASSET status", r.status, r.headers.get("content-type")))
+          .catch(e => console.log("ASSET fetch error", e.message));
+      } catch (e) {}
+    }
+    """#
+
     static var combined: String {
         // Each part is wrapped so one failing part cannot stop the others.
-        return [debugHook, minimalPolyfills, extraPolyfills]
+        return [debugHook, minimalPolyfills, extraPolyfills, assetProbe]   // CHANGED: assetProbe appended
             .map { "try {\n\($0)\n} catch (e) { try { console.error('userscript part failed: ' + e); } catch (_) {} }" }
             .joined(separator: "\n;\n")
     }
