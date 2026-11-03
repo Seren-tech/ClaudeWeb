@@ -1,0 +1,39 @@
+name: ClaudeWeb
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "15.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "15.0"
+targets:
+  ClaudeWeb:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Sources
+    info:
+      path: Generated/Info.plist
+      properties:
+        CFBundleDisplayName: ClaudeWeb
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSCameraUsageDescription: Needed for uploading photos taken with the camera.
+        NSPhotoLibraryUsageDescription: Needed for uploading photos and files.
+        NSMicrophoneUsageDescription: Needed for voice input on web pages.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.claudeweb
+        PRODUCT_NAME: ClaudeWeb
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SWIFT_VERSION: "5.0"
